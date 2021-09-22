@@ -5,7 +5,14 @@ ffk_session_start(true);
 
 
 if (!empty($_POST["username"])) {
-    if (login($_POST["username"], $_POST["password"]) == false) {
+
+    $redirect_url = "";
+
+    if (!empty($_POST["redirect_url"])) {
+        $redirect_url = $_POST["redirect_url"];
+    }
+
+    if (login($_POST["username"], $_POST["password"], $redirect_url) == false) {
         $error = true;
     }
 }
@@ -26,6 +33,13 @@ if ($error) {
 ?>
 
 <form method="POST">
+
+    <?php if (!empty($_REQUEST["redirect"])) { ?>
+
+    <input type="hidden" name="redirect_url" value="<?php echo htmlentities($_REQUEST["redirect"], ENT_HTML5); ?>" />
+
+    <?php } ?>
+
     <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username" name="username" />

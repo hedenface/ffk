@@ -44,18 +44,29 @@ function logged_in($redirect = true)
     }
 
     if ($redirect) {
-        header("Location: login.php");
+
+        $url = $_SERVER["PHP_SELF"];
+        if (!empty($_SERVER["QUERY_STRING"])) {
+            $url .= urlencode("?") . urlencode($_SERVER["QUERY_STRING"]);
+        }
+
+        header("Location: login.php?redirect=" . $url);
     }
     return false;
 }
 
 
-function login($username, $password)
+function login($username, $password, $redirect_url = "")
 {
     if ($username == "hedenface" && $password == "toilet94") {
         $_SESSION["user_id"] = 0;
         $_SESSION["username"] = "hedenface";
         $_SESSION[session_name()] = session_name();
+
+        if (!empty($redirect_url)) {
+            header("Location: $redirect_url");
+        }
+
         return true;
     }
 
