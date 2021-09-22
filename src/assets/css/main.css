@@ -1,5 +1,6 @@
 .col {
-    min-height:  100vh;
+    margin-top: -1.15rem;
+    min-height: 100vh;
 }
 
 .col .col-title {
@@ -7,5 +8,54 @@
 }
 
 .card {
-    margin:  2em 0;
+    margin: 2em 0;
+}
+
+.navbar-auth {
+    float: right;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    width: 100%;
+}
+
+.sidebar {
+    width: 15rem;
+    min-height: 100vh;
+}
+
+.sidebar-header, .title-bar {
+    padding: 0.875rem 1.25rem;
+}
+
+.title-bar {
+    width: 100%;
+}
+
+.title-bar .logout {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.wrapper > .main > .container {
+    padding-top: 2rem;
+}
+
+.new-item span {
+    float:  right;
 }

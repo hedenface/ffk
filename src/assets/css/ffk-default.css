@@ -1,12 +1,33 @@
 .col {
-    background-color: lightblue;
-    border: 1px solid black;
+    background-color: #efefef;
+    border: 1px solid lightgrey;
+    border-left: none;
+}
+
+.col:first-child {
+    border-left: 1px solid lightgrey;
 }
 
 .drag-over {
-    background-color: blue;
+    background-color: lightgrey;
 }
 
 .card {
-    background-color:  white;
+    background-color: white;
+}
+
+.sidebar {
+    border-right:  1px solid lightgrey;
+}
+
+.title-bar {
+    border-bottom:  1px solid lightgrey;
+}
+
+a {
+    color: #636464
+}
+
+a:hover {
+    color: #636464
 }

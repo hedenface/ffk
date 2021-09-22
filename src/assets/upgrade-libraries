@@ -1,7 +1,7 @@
 #!/bin/bash
 
 bootstrap_ver=5.1.1
-# jquery_ver=3.6.0
+#jquery_ver=3.6.0
 
 
 # bootstrap
@@ -11,7 +11,7 @@ wget https://github.com/twbs/bootstrap/releases/download/v${bootstrap_ver}/boots
 unzip bootstrap-${bootstrap_ver}-dist.zip
 
 cp bootstrap-${bootstrap_ver}-dist/css/{bootstrap.css,bootstrap.min.css} css/
-# cp bootstrap-${bootstrap_ver}-dist/js/{bootstrap.bundle.js,bootstrap.bundle.min.js} js/
+#cp bootstrap-${bootstrap_ver}-dist/js/{bootstrap.bundle.js,bootstrap.bundle.min.js} js/
 
 rm -r bootstrap-${bootstrap_ver}-dist
 rm bootstrap-${bootstrap_ver}-dist.zip
@@ -19,9 +19,9 @@ rm bootstrap-${bootstrap_ver}-dist.zip
 
 # jquery
 
-# pushd js
+#pushd js
 
-# wget https://code.jquery.com/jquery-${jquery_ver}.min.js -O jquery.min.js
-# wget https://code.jquery.com/jquery-${jquery_ver}.js -O jquery.js
+#wget https://code.jquery.com/jquery-${jquery_ver}.min.js -O jquery.min.js
+#wget https://code.jquery.com/jquery-${jquery_ver}.js -O jquery.js
 
-# popd
+#popd
