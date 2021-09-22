@@ -1,0 +1,12 @@
+.col {
+    background-color: lightblue;
+    border: 1px solid black;
+}
+
+.drag-over {
+    background-color: blue;
+}
+
+.card {
+    background-color:  white;
+}
