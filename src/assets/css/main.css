@@ -59,3 +59,7 @@ a:hover {
 .new-item span {
     float:  right;
 }
+
+form .form-group input.form-control.number {
+    width:  33%;
+}

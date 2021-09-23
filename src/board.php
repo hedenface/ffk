@@ -4,12 +4,35 @@ require_once(dirname(__FILE__) . "/assets/common/includes.php");
 
 ffk_session_start();
 
-page_header("Board");
+$board = get_board();
+
+page_header("Board", "board.php");
+
+if ($board != false) {
 
 ?>
 
-<div class="container">
     <div class="row">
+
+        <?php foreach (get_columns($board) as $col) { ?>
+
+        <div class="col" id="col-<?php echo $col["id"]; ?>">
+
+            <h4 class="col-title"><?php echo $col["column_name"]; ?></h4>
+
+            <?php foreach (get_things($col) as $thing) { ?>
+
+            <div class="card" draggable="true" data-card-id="<?php echo $thing["id"]; ?>" id="card-<?php echo $thing["id"]; ?>">
+                <h5 class="card-title"><?php echo $thing["title"]; ?></h5>
+                <p class="card-text">...</p>
+            </div>
+
+            <?php } ?>
+
+        </div>
+
+        <?php } ?>
+<!-- 
         <div class="col">
             <h4 class="col-title">Backlog</h4>
             <div class="card" draggable="true" data-card-id="1" id="card1">
@@ -39,11 +62,16 @@ page_header("Board");
                 <p class="card-text">lorem ipsum</p>
             </div>                
         </div>
-    </div>
+    </div> -->
     <div class="row">
     </div>
-</div>
 
 <?php
+
+} else { /* board == false */
+
+    echo "<h1>No Board found!</h1>";
+
+}
 
 page_footer();

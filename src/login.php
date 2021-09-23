@@ -18,7 +18,7 @@ if (!empty($_POST["username"])) {
 }
 
 
-page_header("Login");
+page_header("Login", "login.php");
 
 if ($error) {
     ?>

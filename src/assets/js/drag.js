@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function(e) {
     const cols = document.querySelectorAll(".col");
     const cards = document.querySelectorAll(".card");
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     });
 });
 
+
 function get_parent_col(target)
 {
     classes = Array.from(target.classList);
@@ -26,10 +28,12 @@ function get_parent_col(target)
     return target;
 }
 
+
 function drag_start(e)
 {
     e.dataTransfer.setData("text/plain", e.target.id);
 }
+
 
 function drag_enter(e)
 {
@@ -38,6 +42,7 @@ function drag_enter(e)
     target.classList.add("drag-over");
 }
 
+
 function drag_over(e)
 {
     e.preventDefault();
@@ -45,11 +50,13 @@ function drag_over(e)
     target.classList.add("drag-over");
 }
 
+
 function drag_leave(e)
 {
     const target = get_parent_col(e.target);
     target.classList.remove("drag-over");
 }
+
 
 function drop(e)
 {

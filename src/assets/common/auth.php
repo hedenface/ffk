@@ -58,15 +58,44 @@ function logged_in($redirect = true)
 
 function login($username, $password, $redirect_url = "")
 {
-    if ($username == "hedenface" && $password == "toilet94") {
-        $_SESSION["user_id"] = 0;
-        $_SESSION["username"] = "hedenface";
+    global $db;
+    
+    $stmt = $db->prepare("select id, default_new_item from users where username = :username and hash = concat(md5(:password),md5(reverse(:password))) and enabled = 1");
+    $stmt->bindParam(":username", $username);
+    $stmt->bindParam(":password", $password);
+
+    $stmt->execute();
+
+    foreach ($stmt as $row) {
+        $_SESSION["user_id"] = $row["id"];
+        $_SESSION["username"] = $username;
+        $_SESSION["default_new_item"] = $row["default_new_item"];
         $_SESSION[session_name()] = session_name();
 
-        if (!empty($redirect_url)) {
-            header("Location: $redirect_url");
+        if (empty($redirect_url)) {
+            $redirect_url = "board.php";
         }
 
+        header("Location: $redirect_url");
+
+        return true;
+    }
+
+    return false;
+}
+
+
+function user_has_admin_access()
+{
+    global $db;
+
+    $stmt = $db->prepare("select id from users where username = :username and id = :user_id and enabled = 1 and admin = 1");
+    $stmt->bindParam(":username", $_SESSION["username"]);
+    $stmt->bindParam(":user_id", $_SESSION["user_id"]);
+
+    $stmt->execute();
+
+    foreach ($stmt as $row) {
         return true;
     }
 
