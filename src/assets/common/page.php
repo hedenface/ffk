@@ -51,9 +51,11 @@ function page_header($title, $page, $basedir = ".")
     <link rel="stylesheet" href="<?php echo $basedir; ?>/assets/css/bootstrap.css" />
 
     <script src="<?php echo $basedir; ?>/assets/js/drag.js"></script>
-    <script src="<?php echo $basedir; ?>/assets/js/new-item.js"></script>
-    <script src="<?php echo $basedir; ?>/assets/js/users.js"></script>
     <script src="<?php echo $basedir; ?>/assets/js/messages.js"></script>
+
+    <script src="<?php echo $basedir; ?>/assets/js/items.js"></script>
+    <script src="<?php echo $basedir; ?>/assets/js/users.js"></script>
+
     <link rel="stylesheet" href="<?php echo $basedir; ?>/assets/css/main.css" />
 
     <!-- todo: make theme actually work -->
@@ -71,7 +73,7 @@ function page_header($title, $page, $basedir = ".")
         <?php 
 
         if (logged_in(false)) {
-            print_sidebar_link("new-item.php",  "<strong>New Item</strong><span><strong>&plus;</strong></span>", "none", "new-item", "New Item");
+            print_sidebar_link("thing.php",  "<strong>New Item</strong><span><strong>&plus;</strong></span>", "none", "new-item", "New Item");
             print_board_links($page);
 
             if (user_has_admin_access()) {

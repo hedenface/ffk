@@ -23,15 +23,18 @@ function new_item_click(e)
         if (http_request.readyState == XMLHttpRequest.DONE) {
             if (http_request.status == 200) {
 
-                const bs_modal = new bootstrap.Modal(modal);
-
                 // todo: set the title appropriately if there is a default_new_item for the user, or the boards_users pref
                 modal_title.innerHTML = e.target.getAttribute("data-title");
                 modal_content.innerHTML = http_request.responseText;
 
-                const type_selector = document.getElementById("type-selector");
-                type_selector.addEventListener("click", type_selector_change);
+                // if we are adding or updating a thing
+                // we need to update the change listener
+                if (url.toString().endsWith("thing.php")) {
+                    const type_selector = document.getElementById("type-selector");
+                    type_selector.addEventListener("change", type_selector_change);
+                }
 
+                const bs_modal = new bootstrap.Modal(modal);
                 bs_modal.toggle();
             } else {
                 modal_content.innerHTML = "<div class=\"alert alert-danger\">There was an error loading \"" + url + "\"</div>";
@@ -58,15 +61,14 @@ function type_selector_change(e)
                 modal_title.innerHTML = "New " + e.target.options[e.target.options.selectedIndex].innerHTML;
 
                 const type_selector = document.getElementById("type-selector");
-                type_selector.addEventListener("click", type_selector_change);
-
+                type_selector.addEventListener("change", type_selector_change);
             } else {
-                modal_content.innerHTML = "<div class=\"alert alert-danger\">There was an error loading \"new-item.php\"</div>";
+                modal_content.innerHTML = "<div class=\"alert alert-danger\">There was an error loading \"thing.php\"</div>";
             }
         }
     }
 
-    http_request.open("POST", "new-item.php");
+    http_request.open("POST", "thing.php");
     http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http_request.send("t=" + e.target.options[e.target.options.selectedIndex].value);
 }
