@@ -105,7 +105,16 @@ function show_fields($thing_definition_id)
 
                 case "number":
                     ?>
-                    <input type="text" name="<?php echo $name; ?>" class="form-control number" />
+                    <input type="number" name="<?php echo $name; ?>" class="form-control number" />
+                    <?php
+                    break;
+
+                case "user":
+                    ?>
+                    <input class="form-control" list="<?php echo $name; ?>-list" placeholder="Type to search..." />
+                    <datalist id="<?php echo $name; ?>-list">
+                        <?php echo get_users_for_datalist(); ?>
+                    </datalist>
                     <?php
                     break;
                 }

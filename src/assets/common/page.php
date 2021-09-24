@@ -52,7 +52,11 @@ function page_header($title, $page, $basedir = ".")
 
     <script src="<?php echo $basedir; ?>/assets/js/drag.js"></script>
     <script src="<?php echo $basedir; ?>/assets/js/new-item.js"></script>
+    <script src="<?php echo $basedir; ?>/assets/js/users.js"></script>
+    <script src="<?php echo $basedir; ?>/assets/js/messages.js"></script>
     <link rel="stylesheet" href="<?php echo $basedir; ?>/assets/css/main.css" />
+
+    <!-- todo: make theme actually work -->
     <link rel="stylesheet" href="<?php echo $basedir; ?>/assets/css/ffk-default.css" />
 </head>
 
@@ -86,13 +90,15 @@ function page_header($title, $page, $basedir = ".")
 
 <div class="main">
 
-<div class="title-bar">
+<div class="title-bar row">
 
-    <?php echo $title; ?>
+    <div class="title col-2"><?php echo $title; ?></div>
+
+    <div class="messages col-8"></div>
 
     <?php if (logged_in(false)) { ?>
 
-        <div class="logout"><a href="logout.php">Logout</a></div>
+        <div class="logout col-2 text-right"><a href="logout.php">Logout</a></div>
 
     <?php } ?>
 
@@ -122,8 +128,8 @@ function page_footer()
             <div class="modal-body" id="main-modal-content">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary main-modal-close" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="main-modal-save">Save</button>
+                <button type="button" class="btn <?php echo get_secondary_button_classes(); ?> main-modal-close" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn <?php echo get_primary_button_classes(); ?>" id="main-modal-save" data-bs-dismiss="modal">Save</button>
             </div>
         </div>
     </div>

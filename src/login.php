@@ -49,7 +49,7 @@ if ($error) {
         <input type="password" class="form-control" id="password" name="password">
     </div>
     <div class="btn-group">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn <?php echo get_primary_button_classes(); ?>">Login</button>
     </div>
 </form>
 
