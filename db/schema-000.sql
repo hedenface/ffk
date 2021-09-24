@@ -27,7 +27,9 @@ create table if not exists users (
     admin tinyint not null,
     enabled tinyint not null,
     default_new_item int not null,
-    primary key (id)
+    theme int,
+    primary key (id),
+    unique (username)
 ) engine innodb character set utf8mb4;
 
 
@@ -175,7 +177,7 @@ insert into columns values (1, 0, "Backlog",     1),
 #
 ############################################
 
-create table if not exists audit_log (
+create table if not exists audit_logs (
     id bigint,
     user_id int,
     related_id int,
@@ -183,3 +185,47 @@ create table if not exists audit_log (
     information text,
     primary key (id)
 ) engine innodb character set utf8mb4;
+
+
+#########
+#
+# themes
+#
+#########
+
+create table if not exists themes (
+    id int,
+    name varchar(64),
+    primary key (id)
+) engine innodb character set utf8mb4;
+
+insert into themes values (1, "ffk-default");
+
+
+###########
+#
+# metadata
+#
+###########
+
+create table if not exists metadata (
+    id int,
+    table varchar(64),
+    contents text,
+    primary key (id)
+) engine innodb character set utf8mb4;
+
+
+##########
+#
+# options
+#
+##########
+
+create table if not exists options (
+    name varchar(64),
+    value varchar(256),
+    primary key (name)
+) engine innodb character set utf8mb4;
+
+insert into options values ("default_system_theme", "ffk-default");

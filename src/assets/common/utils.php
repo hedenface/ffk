@@ -42,3 +42,39 @@ function is_checked($checked, $print = true)
 
     return $checked;
 }
+
+
+function set_option($name, $value)
+{
+    global $db;
+
+    $stmt = $db->prepare("insert into options (name, value) values (:name, :value)");
+    $stmt->bindParam(":name", $name);
+    $stmt->bindParam(":value", $value);
+
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+        return false;
+    }
+
+    return true;
+}
+
+
+function get_option($name, $default = false)
+{
+    global $db;
+
+    $stmt = $db->prepare("select * from options where name = :name");
+    $stmt->bindParam(":name", $name);
+
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
+
+    foreach ($stmt as $row) {
+        return $row;
+    }
+
+    return $default;
+}
