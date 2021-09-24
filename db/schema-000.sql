@@ -210,7 +210,7 @@ insert into themes values (1, "ffk-default");
 
 create table if not exists metadata (
     id int,
-    table varchar(64),
+    table_name varchar(64),
     contents text,
     primary key (id)
 ) engine innodb character set utf8mb4;
@@ -228,4 +228,5 @@ create table if not exists options (
     primary key (name)
 ) engine innodb character set utf8mb4;
 
-insert into options values ("default_system_theme", "ffk-default");
+insert into options values ("default_system_theme", "ffk-default"),
+                           ("first_login",          "1");

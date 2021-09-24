@@ -73,8 +73,24 @@ function get_option($name, $default = false)
     }
 
     foreach ($stmt as $row) {
-        return $row;
+        return $row["value"];
     }
 
     return $default;
+}
+
+
+function delete_option($name)
+{
+    global $db;
+
+    $stmt = $db->prepare("delete from options where name = :name");
+    $stmt->bindParam(":name", $name);
+
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+        return false;
+    }
+
+    return true;
 }

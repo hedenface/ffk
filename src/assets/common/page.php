@@ -36,6 +36,9 @@ function print_board_links($page)
 
 function page_header($title, $page, $basedir = ".")
 {
+    if (get_option("first_login") == "1") {
+        // todo: figure out first_login stuff
+    }
     ?>
 
 <!doctype html>
