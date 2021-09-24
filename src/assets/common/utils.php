@@ -12,7 +12,7 @@ if (!function_exists("get_primary_button_classes"))
 }
 
 
-if (!function_exists("get_primary_button_classes"))
+if (!function_exists("get_secondary_button_classes"))
 {
     function get_secondary_button_classes()
     {
