@@ -7,7 +7,9 @@ function get_users($enabled = true)
     $stmt = $db->prepare("select * from users where enabled = :enabled");
     $stmt->bindParam(":enabled", intval($enabled));
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $users = array();
 
@@ -24,7 +26,9 @@ function get_all_users()
 
     $stmt = $db->prepare("select * from users");
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $users = array();
 
@@ -55,7 +59,9 @@ function get_user($id)
     $stmt = $db->prepare("select * from users where id = :id");
     $stmt->bindParam(":id", $id);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     foreach ($stmt as $user) {
         return $user;
@@ -85,6 +91,7 @@ function edit_user($user_id, $username, $password, $enabled, $admin)
     $stmt->bindParam(":admin", $admin);
 
     if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
         return false;
     }
 
@@ -98,6 +105,7 @@ function edit_user($user_id, $username, $password, $enabled, $admin)
     $stmt->bindParam(":username", $username);
 
     if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
         return false;
     }
 

@@ -7,7 +7,9 @@ function get_things($column)
     $stmt = $db->prepare("select things.id from things join thing_definitions on thing_definitions.id = things.thing_definition_id where things.column_id = :column_id and things. archived = 0");
     $stmt->bindParam(":column_id", $column["id"]);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $things = array();
 
@@ -25,7 +27,9 @@ function get_thing_definitions()
 
     $stmt = $db->prepare("select * from thing_definitions where enabled = 1");
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $thing_definitions = array();
 
@@ -44,7 +48,9 @@ function get_thing($id)
     $stmt = $db->prepare("select * from things where id = :id");
     $stmt->bindParam(":id", $id);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $thing = array();
 
@@ -63,7 +69,9 @@ function get_thing_definition($id)
     $stmt = $db->prepare("select * from thing_definitions where id = :id");
     $stmt->bindParam(":id", $id);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $thing_definitions = array();
 
@@ -83,7 +91,9 @@ function get_thing_attributes($thing_id, $card = false)
     $stmt = $db->prepare("select * from thing_attributes where thing_id = :thing_id");
     $stmt->bindParam(":id", $id);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $thing_attributes = array();
 
@@ -112,7 +122,9 @@ function get_thing_attribute_definitions($id, $card = false)
     $stmt = $db->prepare("select * from thing_attribute_definitions where id = :id");
     $stmt->bindParam(":id", $id);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $thing_attribute_definitions = array();
 

@@ -7,7 +7,9 @@ function get_columns($board)
     $stmt = $db->prepare("select id, column_name from columns where board_id = :board_id and enabled = 1");
     $stmt->bindParam(":board_id", $board["id"]);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     $cols = array();
 

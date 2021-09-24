@@ -64,7 +64,9 @@ function login($username, $password, $redirect_url = "")
     $stmt->bindParam(":username", $username);
     $stmt->bindParam(":password", $password);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     foreach ($stmt as $row) {
         $_SESSION["user_id"] = $row["id"];
@@ -93,7 +95,9 @@ function user_has_admin_access()
     $stmt->bindParam(":username", $_SESSION["username"]);
     $stmt->bindParam(":user_id", $_SESSION["user_id"]);
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
 
     foreach ($stmt as $row) {
         return true;

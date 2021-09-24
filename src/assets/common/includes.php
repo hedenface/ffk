@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../../config.php");
+require_once(dirname(__FILE__) . "/debug.php");
 
 if (!empty($config["theme"])) {
     include(dirname(__FILE__) . "/../theme/" . $config["theme"] . ".php");

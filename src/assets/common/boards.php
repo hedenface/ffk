@@ -11,7 +11,9 @@ function get_board()
         $stmt = $db->prepare("select * from boards where global = 1 and enabled = 1 limit 1");
     }
 
-    $stmt->execute();
+    if ($stmt->execute() === false) {
+        d($stmt->errorInfo());
+    }
     
     foreach ($stmt as $row) {
         return $row;
