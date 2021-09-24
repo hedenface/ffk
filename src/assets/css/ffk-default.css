@@ -31,3 +31,10 @@ a {
 a:hover {
     color: #636464
 }
+
+pre {
+    border: 1px solid grey;
+    background-color: lightgrey;
+    padding: 1em;
+    font-family: "Courier";
+}
