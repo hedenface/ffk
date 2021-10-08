@@ -44,7 +44,12 @@ function page_header($title, $page, $basedir = ".")
 <!doctype html>
 <html lang="en">
 
+<?php apply_action_callbacks("page_printing_head_pre_open"); ?>
+
 <head>
+
+    <?php apply_action_callbacks("page_printing_head_post_open"); ?>
+
     <title><?php echo $title; ?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -63,11 +68,20 @@ function page_header($title, $page, $basedir = ".")
 
     <!-- todo: make theme actually work -->
     <link rel="stylesheet" href="<?php echo $basedir; ?>/assets/css/ffk-default.css" />
+
+    <?php apply_action_callbacks("page_printing_head_pre_close"); ?>
+
 </head>
+
+<?php apply_action_callbacks("page_printing_head_post_close"); ?>
 
 <body>
 
+<?php apply_action_callbacks("page_printing_body_post_open"); ?>
+
 <div class="wrapper">
+
+<?php apply_action_callbacks("page_printing_div_wrapper_post_open"); ?>
 
 <nav class="sidebar">
     <div class="list-group list-group-flush">
@@ -95,6 +109,8 @@ function page_header($title, $page, $basedir = ".")
 
 <div class="main">
 
+<?php apply_action_callbacks("page_printing_div_main_post_open"); ?>
+
 <div class="title-bar row">
 
     <div class="title col-2"><?php echo $title; ?></div>
@@ -111,6 +127,8 @@ function page_header($title, $page, $basedir = ".")
 
 <div class="container">
 
+    <?php apply_action_callbacks("page_printing_div_container_post_open"); ?>
+
     <?php
 }
 
@@ -119,8 +137,11 @@ function page_footer()
 {
     ?>
 
+<?php apply_action_callbacks("page_printing_div_container_pre_close"); ?>
 </div><!-- .container -->
+<?php apply_action_callbacks("page_printing_div_main_pre_close"); ?>
 </div><!-- .main -->
+<?php apply_action_callbacks("page_printing_div_wrapper_pre_close"); ?>
 </div><!-- .wrapper -->
 
 <div class="modal fade" id="main-modal" tabindex="-1" role="dialog" aria-labelledby="modal-center-tile" aria-hidden="true">
@@ -140,7 +161,12 @@ function page_footer()
     </div>
 </div>
 
+<?php apply_action_callbacks("page_printing_body_pre_close"); ?>
+
 </body>
+
+<?php apply_action_callbacks("page_printing_body_post_close"); ?>
+
 </html>
 
     <?php
